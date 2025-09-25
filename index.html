@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SLU Campus Archaeology</title>
+    <title>Saint Louis University Campus Archaeology</title>
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -13,93 +13,109 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Source+Sans+3:wght@300;400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#explore">Skip to map</a>
     <header class="hero">
-      <div class="hero__content">
-        <h1>Saint Louis University Campus Archaeology</h1>
-        <p>
-          Explore the excavations, artifacts, and stories uncovered across the
-          SLU campus. Dive into interactive maps, excavation timelines, and
-          artifact inventories that reveal the university's layered past.
+      <div class="hero__inner">
+        <div class="hero__tag">Saint Louis University</div>
+        <h1 class="hero__title">Campus Archaeology</h1>
+        <p class="hero__lede">
+          Discover how students and faculty uncover the layers of history beneath
+          SLU's Midtown campus. Explore field investigations, lab studies, and
+          artifact collections through an interactive map and project catalog.
         </p>
-        <a class="btn" href="#map-section">Explore the Map</a>
+        <div class="hero__actions">
+          <a class="btn" href="#explore">Explore the map</a>
+          <a class="btn btn--ghost" href="#projects-title">Browse projects</a>
+        </div>
       </div>
     </header>
 
-    <nav class="toolbar" aria-label="Site filters">
-      <div class="toolbar__filters">
-        <label for="era-filter">Era</label>
-        <select id="era-filter" class="toolbar__select">
-          <option value="all">All eras</option>
-        </select>
-
-        <label for="theme-filter">Research Theme</label>
-        <select id="theme-filter" class="toolbar__select">
-          <option value="all">All themes</option>
-        </select>
-      </div>
-      <div class="toolbar__legend" aria-label="Map legend">
-        <span class="legend__item legend__excavation">Excavation</span>
-        <span class="legend__item legend__survey">Survey</span>
-        <span class="legend__item legend__lab">Laboratory</span>
-      </div>
-    </nav>
-
     <main>
-      <section id="map-section" class="layout">
-        <div class="layout__map" role="region" aria-label="Excavation map">
+      <section class="controls" aria-label="Project filters">
+        <div class="controls__group">
+          <label class="controls__label" for="filter-era">Era</label>
+          <select id="filter-era" class="controls__select">
+            <option value="all">All eras</option>
+          </select>
+        </div>
+        <div class="controls__group">
+          <label class="controls__label" for="filter-focus">Research focus</label>
+          <select id="filter-focus" class="controls__select">
+            <option value="all">All themes</option>
+          </select>
+        </div>
+        <button id="reset-filters" class="controls__reset" type="button">
+          Reset filters
+        </button>
+        <p id="result-count" class="controls__count" aria-live="polite"></p>
+      </section>
+
+      <section id="explore" class="explore">
+        <div class="explore__map" role="region" aria-label="Campus archaeology map">
           <div id="map"></div>
         </div>
-        <aside class="layout__details" aria-live="polite">
-          <h2 id="site-title">Select a project</h2>
-          <p id="site-description">
-            Click a map marker or choose a project below to view excavation
-            highlights and artifact inventories.
-          </p>
-          <div class="site-meta" id="site-meta"></div>
-          <div class="site-artifacts" id="artifact-inventory"></div>
+        <aside class="explore__detail" aria-live="polite">
+          <div class="detail" id="detail-panel">
+            <h2 class="detail__title" id="detail-title">Choose a project</h2>
+            <p class="detail__intro" id="detail-intro">
+              Use the map markers, timeline, or project list to learn more about
+              each field school, excavation, and laboratory investigation.
+            </p>
+            <dl class="detail__meta" id="detail-meta"></dl>
+            <div class="detail__summary" id="detail-summary"></div>
+            <div class="detail__discoveries" id="detail-discoveries"></div>
+            <div class="detail__artifacts" id="detail-artifacts"></div>
+          </div>
         </aside>
       </section>
 
       <section class="timeline" aria-labelledby="timeline-title">
-        <h2 id="timeline-title">Excavation Timeline</h2>
-        <div class="timeline__track" id="timeline-track"></div>
+        <div class="section-heading">
+          <h2 id="timeline-title">Project timeline</h2>
+          <p>
+            Follow the progression of campus archaeology work from early
+            monitoring efforts to recent research-driven excavations.
+          </p>
+        </div>
+        <ol class="timeline__list" id="timeline-list"></ol>
       </section>
 
       <section class="projects" aria-labelledby="projects-title">
-        <div class="projects__header">
-          <h2 id="projects-title">Featured Projects</h2>
+        <div class="section-heading">
+          <h2 id="projects-title">Project catalog</h2>
           <p>
-            Browse the catalog of campus investigations led by SLU archaeologists
-            and students. Select a project to zoom to its location and review the
-            artifact inventory.
+            Browse excavations, surveys, and lab studies. Selecting a card will
+            highlight it on the map and reveal the artifact inventory.
           </p>
         </div>
-        <div class="projects__grid" id="project-grid"></div>
+        <div class="projects__grid" id="project-grid" role="list"></div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>
-        &copy; <span id="copyright-year"></span> Saint Louis University Campus
-        Archaeology Program. Background map &copy; OpenStreetMap contributors.
-      </p>
-      <p>
-        Built to support experiential learning, heritage stewardship, and public
-        engagement across SLU's historic campus.
-      </p>
+      <div class="site-footer__inner">
+        <p>
+          Data curated by the Saint Louis University Campus Archaeology program.
+          Basemap imagery © OpenStreetMap contributors.
+        </p>
+        <p>
+          Contact <a href="mailto:archaeology@slu.edu">archaeology@slu.edu</a>
+          to contribute excavation updates or artifact inventories.
+        </p>
+      </div>
     </footer>
 
     <script
       src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-      integrity="sha256-o8UztSe8j8w7k9gCkDP5CjRCx4CkGZO7w8Ff0Ep0uXQ="
+      integrity="sha256-o9N1j7kG9hRrPJg3nE1r3sLx94WfP4ZefP2RjFh0zYw="
       crossorigin=""
     ></script>
-    <script src="assets/js/app.js" type="module"></script>
+    <script src="assets/js/app.js" defer></script>
   </body>
 </html>

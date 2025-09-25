@@ -1,33 +1,37 @@
-# Campus Archaeology Interactive Map
+# Saint Louis University Campus Archaeology
 
-An interactive single-page website that showcases Saint Louis University's campus archaeology program. The site combines a Leaflet-powered map, excavation timeline, and artifact inventories to help visitors explore current and past research.
+An interactive website that showcases Saint Louis University's campus archaeology program. The experience combines a Leaflet-powered map, timeline, and catalog to highlight excavations, surveys, and laboratory projects while surfacing artifact inventories from each investigation.
 
 ## Features
 
-- **Interactive mapping** of excavation, survey, and laboratory locations across SLU's campus.
-- **Project catalog** with quick filtering by era and research theme.
-- **Artifact inventories** that summarize materials recovered from each investigation.
-- **Timeline view** highlighting the sequence of campus archaeology projects.
+- **Interactive campus map** with custom markers for excavation, survey, and laboratory projects.
+- **Filterable project catalog** that narrows results by era and research focus while keeping the map and timeline in sync.
+- **Detailed project drawer** describing locations, goals, discoveries, and curated artifact inventories.
+- **Chronological timeline** illustrating how campus archaeology work has evolved across the Midtown campus.
 
-## Getting Started
+## Running the site locally
 
-This site is built with static HTML, CSS, and JavaScript. No build step is required.
+The repository includes a lightweight Node server that serves the static site without any external dependencies.
 
-1. Install any simple static web server (for example Python's built-in module).
-2. Start the server from the repository root:
+```bash
+npm start
+```
 
-   ```bash
-   python -m http.server 8000
-   ```
+Then open [http://localhost:3000](http://localhost:3000) to explore the map. The server simply delivers the static assets so you can also use any alternative static file host if preferred.
 
-3. Open your browser to [http://localhost:8000](http://localhost:8000) and navigate to `index.html`.
+## Project data
 
-## Data Structure
+Project information lives in [`data/excavations.json`](data/excavations.json). Each entry includes:
 
-Project data lives in [`data/excavations.json`](data/excavations.json). Each project entry includes coordinates, descriptive fields, and artifact inventory sections. Update this file to add new excavations or collections work.
+- `title`, `type`, `era`, `focus`, `years`, and `location` metadata.
+- `coordinates` for map placement (latitude, longitude).
+- Narrative fields (`teaser`, `summary`, `timelineNote`).
+- Arrays of `discoveries` and `artifacts` (each artifact group lists a category with bullet points).
+
+Update or expand this file to add additional Saint Louis University excavations, surveys, or laboratory initiatives. The interface automatically reflects new entries on the map, timeline, and catalog once the data file is saved.
 
 ## Acknowledgements
 
 - Mapping powered by [Leaflet](https://leafletjs.com/) and OpenStreetMap tiles.
 - Typography from Playfair Display and Source Sans 3 via Google Fonts.
-- Hero image courtesy of Unsplash (campus architecture by Matthew T Rader).
+- Hero imagery courtesy of [Unsplash](https://unsplash.com/).
