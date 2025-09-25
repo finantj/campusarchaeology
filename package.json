@@ -1,6 +1,6 @@
 {
   "name": "campusarchaeology",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Interactive campus archaeology website for Saint Louis University",
   "main": "server.js",
   "scripts": {
@@ -12,5 +12,9 @@
     "slu"
   ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "sqlite3": "^5.1.7"
+  }
 }

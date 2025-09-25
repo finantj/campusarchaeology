@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Missouri SHPO Archaeological Site Recordation | SLU Campus Archaeology</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body class="site-recordation">
+    <a class="skip-link" href="#recordation-form">Skip to form</a>
+    <header class="form-hero">
+      <div class="form-hero__inner">
+        <p class="form-hero__eyebrow">Saint Louis University Campus Archaeology</p>
+        <h1 class="form-hero__title">
+          Missouri SHPO Archaeological Site Recordation
+        </h1>
+        <p class="form-hero__lede">
+          Use this digital intake form to capture excavation details for submission to the Missouri Department of Natural Resources State Historic Preservation Office.
+        </p>
+        <div class="form-hero__actions">
+          <a class="btn" href="index.html">Return to main site</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="form-main">
+      <section class="form-intro">
+        <p>
+          All fields mirror the MO 780-1927 (10-10) paper form. Dropdowns preserve the original numbering conventions, and multi-select categories allow you to choose every component present at the site. Submissions are stored locally in the campus archaeology database for future reference.
+        </p>
+      </section>
+
+      <form id="recordation-form" class="recordation-form" novalidate>
+        <div class="form-status" id="form-status" role="alert" aria-live="polite"></div>
+
+        <fieldset class="form-section">
+          <legend>1–3. Site Identification</legend>
+          <div class="form-grid">
+            <label class="form-field">
+              <span>1. County</span>
+              <input type="text" name="county" autocomplete="address-level2" />
+            </label>
+            <label class="form-field">
+              <span>2. Local name / field number</span>
+              <input type="text" name="localName" />
+            </label>
+            <label class="form-field">
+              <span>3. SHPO site number</span>
+              <input type="text" name="shpoSiteNumber" />
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>4–7. Location Reference</legend>
+          <div class="form-grid">
+            <label class="form-field">
+              <span>4. Section / Land grant</span>
+              <input type="text" name="sectionLandGrant" />
+            </label>
+            <label class="form-field">
+              <span>5. Township</span>
+              <input type="text" name="township" />
+            </label>
+            <label class="form-field">
+              <span>6. Range</span>
+              <input type="text" name="range" />
+            </label>
+            <label class="form-field">
+              <span>7. Update?</span>
+              <select name="updateStatus">
+                <option value="">Select status</option>
+                <option value="1 - Yes">1 - Yes</option>
+                <option value="2 - No">2 - No</option>
+              </select>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>8–15. Mapping &amp; Registration</legend>
+          <div class="form-grid form-grid--three">
+            <label class="form-field">
+              <span>8. Quad name</span>
+              <input type="text" name="quadName" />
+            </label>
+            <label class="form-field">
+              <span>9. Topo date</span>
+              <input type="text" name="topoDate" />
+            </label>
+            <label class="form-field">
+              <span>10. Site area (m²)</span>
+              <input type="text" name="siteArea" />
+            </label>
+            <label class="form-field">
+              <span>11. UTM zone</span>
+              <input type="text" name="utmZone" />
+            </label>
+            <label class="form-field">
+              <span>12. UTM northing</span>
+              <input type="text" name="utmNorthing" />
+            </label>
+            <label class="form-field">
+              <span>13. UTM easting</span>
+              <input type="text" name="utmEasting" />
+            </label>
+            <label class="form-field">
+              <span>14. Datum</span>
+              <select name="datum">
+                <option value="">Select datum</option>
+                <option value="1 - NAD 83">1 - NAD 83</option>
+                <option value="2 - NAD 27">2 - NAD 27</option>
+              </select>
+            </label>
+            <label class="form-field">
+              <span>15. NRHP status</span>
+              <select name="nrhpStatus">
+                <option value="">Select status</option>
+                <option value="1 - Unevaluated">1 - Unevaluated</option>
+                <option value="2 - Listed">2 - Listed</option>
+                <option value="3 - Eligible">3 - Eligible</option>
+                <option value="4 - Not eligible">4 - Not eligible</option>
+              </select>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>16–20. Property &amp; Recorder Information</legend>
+          <div class="form-grid">
+            <label class="form-field form-field--wide">
+              <span>16. Owner / address of property</span>
+              <textarea name="ownerAddress" rows="3"></textarea>
+            </label>
+            <label class="form-field form-field--wide">
+              <span>17. Tenant / address of property</span>
+              <textarea name="tenantAddress" rows="3"></textarea>
+            </label>
+            <label class="form-field">
+              <span>18. Information current as of</span>
+              <input type="text" name="infoCurrentAsOf" />
+            </label>
+            <label class="form-field form-field--wide">
+              <span>19. Recorder name / address</span>
+              <textarea name="recorderNameAddress" rows="3"></textarea>
+            </label>
+            <label class="form-field">
+              <span>20. Recording organization</span>
+              <input type="text" name="recordingOrganization" />
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>21. Site Description</legend>
+          <textarea name="siteDescription" rows="5"></textarea>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>22. Cultural affiliation (indicate all that apply)</legend>
+          <div class="form-subsection">
+            <h3>Prehistoric</h3>
+            <div class="checkbox-grid">
+              <label><input type="checkbox" name="culturalPrehistoric" value="01 - Prehistoric" /> 01 - Prehistoric</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="02 - Undefined Prehistoric" /> 02 - Undefined Prehistoric</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="03 - Pre-Clovis" /> 03 - Pre-Clovis</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="04 - Paleo Indian" /> 04 - Paleo Indian</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="05 - Dalton" /> 05 - Dalton</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="06 - Archaic" /> 06 - Archaic</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="07 - Early Archaic" /> 07 - Early Archaic</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="08 - Middle Archaic" /> 08 - Middle Archaic</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="09 - Late Archaic" /> 09 - Late Archaic</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="10 - Woodland" /> 10 - Woodland</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="11 - Early Woodland" /> 11 - Early Woodland</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="12 - Middle Woodland" /> 12 - Middle Woodland</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="13 - Late Woodland" /> 13 - Late Woodland</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="14 - Terminal Late Woodland (Emergent Miss.)" /> 14 - Terminal Late Woodland (Emergent Miss.)</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="15 - Mississippian" /> 15 - Mississippian</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="16 - Early Mississippian" /> 16 - Early Mississippian</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="17 - Middle Mississippian" /> 17 - Middle Mississippian</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="18 - Late Mississippian" /> 18 - Late Mississippian</label>
+              <label><input type="checkbox" name="culturalPrehistoric" value="19 - Proto-Historic" /> 19 - Proto-Historic</label>
+            </div>
+          </div>
+          <div class="form-subsection">
+            <h3>Historic</h3>
+            <div class="checkbox-grid">
+              <label><input type="checkbox" name="culturalHistoric" value="20 - Historic Native-American" /> 20 - Historic Native-American</label>
+              <label><input type="checkbox" name="culturalHistoric" value="21 - Historic African-American" /> 21 - Historic African-American</label>
+              <label><input type="checkbox" name="culturalHistoric" value="22 - Historic Euro-American" /> 22 - Historic Euro-American</label>
+              <label><input type="checkbox" name="culturalHistoric" value="23 - Historic Other" /> 23 - Historic Other</label>
+              <label><input type="checkbox" name="culturalHistoric" value="24 - Colonial (1700-1803)" /> 24 - Colonial (1700-1803)</label>
+              <label><input type="checkbox" name="culturalHistoric" value="25 - Territorial (1804-1820)" /> 25 - Territorial (1804-1820)</label>
+              <label><input type="checkbox" name="culturalHistoric" value="26 - Antebellum (1821-1861)" /> 26 - Antebellum (1821-1861)</label>
+              <label><input type="checkbox" name="culturalHistoric" value="27 - Civil War (1861-1865)" /> 27 - Civil War (1861-1865)</label>
+              <label><input type="checkbox" name="culturalHistoric" value="28 - Early Industrial (1866-1899)" /> 28 - Early Industrial (1866-1899)</label>
+              <label><input type="checkbox" name="culturalHistoric" value="29 - Urban/Industrial (1900-1960)" /> 29 - Urban/Industrial (1900-1960)</label>
+              <label><input type="checkbox" name="culturalHistoric" value="30 - Other" /> 30 - Other</label>
+            </div>
+            <label class="form-field form-field--wide">
+              <span>Define “other”</span>
+              <input type="text" name="culturalOther" />
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>23. Site type (indicate all that apply)</legend>
+          <div class="checkbox-grid">
+            <label><input type="checkbox" name="siteTypes" value="1 - Lithic Scatter" /> 1 - Lithic Scatter</label>
+            <label><input type="checkbox" name="siteTypes" value="2 - Mound/Cairn" /> 2 - Mound/Cairn</label>
+            <label><input type="checkbox" name="siteTypes" value="3 - Cemetery/Mortuary" /> 3 - Cemetery/Mortuary</label>
+            <label><input type="checkbox" name="siteTypes" value="4 - Habitation (prehistoric)" /> 4 - Habitation (prehistoric)</label>
+            <label><input type="checkbox" name="siteTypes" value="5 - Habitation (historic)" /> 5 - Habitation (historic)</label>
+            <label><input type="checkbox" name="siteTypes" value="6 - Extraction Camp" /> 6 - Extraction Camp</label>
+            <label><input type="checkbox" name="siteTypes" value="7 - Cave/Rockshelter" /> 7 - Cave/Rockshelter</label>
+            <label><input type="checkbox" name="siteTypes" value="8 - Quarry" /> 8 - Quarry</label>
+            <label><input type="checkbox" name="siteTypes" value="9 - Historic Scatter" /> 9 - Historic Scatter</label>
+            <label><input type="checkbox" name="siteTypes" value="10 - Rock Art" /> 10 - Rock Art</label>
+            <label><input type="checkbox" name="siteTypes" value="11 - Commercial/Industrial" /> 11 - Commercial/Industrial</label>
+            <label><input type="checkbox" name="siteTypes" value="12 - Public" /> 12 - Public</label>
+            <label><input type="checkbox" name="siteTypes" value="13 - Military" /> 13 - Military</label>
+            <label><input type="checkbox" name="siteTypes" value="14 - Governmental" /> 14 - Governmental</label>
+            <label><input type="checkbox" name="siteTypes" value="15 - Trail/Trace" /> 15 - Trail/Trace</label>
+            <label><input type="checkbox" name="siteTypes" value="16 - Mining" /> 16 - Mining</label>
+            <label><input type="checkbox" name="siteTypes" value="17 - Timber" /> 17 - Timber</label>
+            <label><input type="checkbox" name="siteTypes" value="18 - Road" /> 18 - Road</label>
+            <label><input type="checkbox" name="siteTypes" value="19 - Tram/RR" /> 19 - Tram/RR</label>
+            <label><input type="checkbox" name="siteTypes" value="20 - Other" /> 20 - Other</label>
+          </div>
+          <label class="form-field form-field--wide">
+            <span>Define “other”</span>
+            <input type="text" name="siteTypeOther" />
+          </label>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>24. Water source</legend>
+          <div class="form-grid">
+            <label class="form-field">
+              <span>Water source</span>
+              <select name="waterSource">
+                <option value="">Select water source</option>
+                <option value="1 - Perennial Stream/River">1 - Perennial Stream/River</option>
+                <option value="2 - Intermittent Stream">2 - Intermittent Stream</option>
+                <option value="3 - Spring">3 - Spring</option>
+                <option value="4 - Marsh/Swamp/Fen">4 - Marsh/Swamp/Fen</option>
+                <option value="5 - Lake">5 - Lake</option>
+                <option value="6 - Other">6 - Other</option>
+              </select>
+            </label>
+            <label class="form-field">
+              <span>Define “other”</span>
+              <input type="text" name="waterSourceOther" />
+            </label>
+            <label class="form-field">
+              <span>Name</span>
+              <input type="text" name="waterSourceName" />
+            </label>
+            <label class="form-field">
+              <span>Distance (m)</span>
+              <input type="text" name="waterSourceDistance" />
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>25. Topographic location</legend>
+          <div class="checkbox-grid">
+            <label><input type="checkbox" name="topographicLocation" value="1 - Knoll" /> 1 - Knoll</label>
+            <label><input type="checkbox" name="topographicLocation" value="2 - Hill" /> 2 - Hill</label>
+            <label><input type="checkbox" name="topographicLocation" value="3 - Ridge" /> 3 - Ridge</label>
+            <label><input type="checkbox" name="topographicLocation" value="4 - Slope" /> 4 - Slope</label>
+            <label><input type="checkbox" name="topographicLocation" value="5 - Bluff top" /> 5 - Bluff top</label>
+            <label><input type="checkbox" name="topographicLocation" value="6 - Floodplain" /> 6 - Floodplain</label>
+            <label><input type="checkbox" name="topographicLocation" value="7 - Island" /> 7 - Island</label>
+            <label><input type="checkbox" name="topographicLocation" value="8 - Sand dune" /> 8 - Sand dune</label>
+            <label><input type="checkbox" name="topographicLocation" value="9 - River/stream terrace" /> 9 - River/stream terrace</label>
+            <label><input type="checkbox" name="topographicLocation" value="10 - Alluvial fan" /> 10 - Alluvial fan</label>
+            <label><input type="checkbox" name="topographicLocation" value="11 - Colluvial fan" /> 11 - Colluvial fan</label>
+            <label><input type="checkbox" name="topographicLocation" value="12 - Gap/Saddle" /> 12 - Gap/Saddle</label>
+            <label><input type="checkbox" name="topographicLocation" value="13 - Hillside/Bench" /> 13 - Hillside/Bench</label>
+            <label><input type="checkbox" name="topographicLocation" value="14 - Glade" /> 14 - Glade</label>
+            <label><input type="checkbox" name="topographicLocation" value="15 - Other" /> 15 - Other</label>
+          </div>
+          <label class="form-field form-field--wide">
+            <span>Define “other”</span>
+            <input type="text" name="topographicLocationOther" />
+          </label>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>26. Materials reported (indicate all that apply)</legend>
+          <div class="checkbox-grid">
+            <label><input type="checkbox" name="materialReported" value="1 - Lithics" /> 1 - Lithics</label>
+            <label><input type="checkbox" name="materialReported" value="2 - Lithic Tool" /> 2 - Lithic Tool</label>
+            <label><input type="checkbox" name="materialReported" value="3 - Ceramics (prehistoric)" /> 3 - Ceramics (prehistoric)</label>
+            <label><input type="checkbox" name="materialReported" value="4 - Ceramics (historic)" /> 4 - Ceramics (historic)</label>
+            <label><input type="checkbox" name="materialReported" value="5 - Floral" /> 5 - Floral</label>
+            <label><input type="checkbox" name="materialReported" value="6 - Faunal" /> 6 - Faunal</label>
+            <label><input type="checkbox" name="materialReported" value="7 - Historic" /> 7 - Historic</label>
+            <label><input type="checkbox" name="materialReported" value="8 - Glass" /> 8 - Glass</label>
+            <label><input type="checkbox" name="materialReported" value="9 - Metal" /> 9 - Metal</label>
+            <label><input type="checkbox" name="materialReported" value="10 - Building Materials" /> 10 - Building Materials</label>
+            <label><input type="checkbox" name="materialReported" value="11 - Other" /> 11 - Other</label>
+          </div>
+          <label class="form-field form-field--wide">
+            <span>Define “other”</span>
+            <input type="text" name="materialOther" />
+          </label>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>27–28. Collection &amp; repository</legend>
+          <div class="form-grid">
+            <label class="form-field">
+              <span>27. Collection?</span>
+              <select name="collection">
+                <option value="">Select collection status</option>
+                <option value="1 - Yes">1 - Yes</option>
+                <option value="2 - No">2 - No</option>
+              </select>
+            </label>
+            <label class="form-field">
+              <span>28. Repository</span>
+              <input type="text" name="repository" />
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>29. Remote sensing (indicate all that apply)</legend>
+          <div class="checkbox-grid">
+            <label><input type="checkbox" name="remoteSensing" value="1 - Magnetometer" /> 1 - Magnetometer</label>
+            <label><input type="checkbox" name="remoteSensing" value="2 - Ground Penetrating Radar" /> 2 - Ground Penetrating Radar</label>
+            <label><input type="checkbox" name="remoteSensing" value="3 - Resistivity" /> 3 - Resistivity</label>
+            <label><input type="checkbox" name="remoteSensing" value="4 - Sonar" /> 4 - Sonar</label>
+            <label><input type="checkbox" name="remoteSensing" value="5 - Aerial/Satellite Photography" /> 5 - Aerial/Satellite Photography</label>
+            <label><input type="checkbox" name="remoteSensing" value="6 - Infrared Photography" /> 6 - Infrared Photography</label>
+            <label><input type="checkbox" name="remoteSensing" value="7 - Other" /> 7 - Other</label>
+          </div>
+          <label class="form-field form-field--wide">
+            <span>Define “other”</span>
+            <input type="text" name="remoteSensingOther" />
+          </label>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>30. Sampling technique (indicate all that apply)</legend>
+          <div class="checkbox-grid">
+            <label><input type="checkbox" name="samplingTechniques" value="1 - Pedestrian Survey" /> 1 - Pedestrian Survey</label>
+            <label><input type="checkbox" name="samplingTechniques" value="2 - Shovel Test" /> 2 - Shovel Test</label>
+            <label><input type="checkbox" name="samplingTechniques" value="3 - Soil Cores/Probes" /> 3 - Soil Cores/Probes</label>
+            <label><input type="checkbox" name="samplingTechniques" value="4 - Auger Tests" /> 4 - Auger Tests</label>
+            <label><input type="checkbox" name="samplingTechniques" value="5 - Trenching" /> 5 - Trenching</label>
+            <label><input type="checkbox" name="samplingTechniques" value="6 - Test Units" /> 6 - Test Units</label>
+            <label><input type="checkbox" name="samplingTechniques" value="7 - Other" /> 7 - Other</label>
+          </div>
+          <label class="form-field form-field--wide">
+            <span>Define “other”</span>
+            <input type="text" name="samplingOther" />
+          </label>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>31–34. Environmental context</legend>
+          <div class="form-grid form-grid--three">
+            <label class="form-field">
+              <span>31. Soil type</span>
+              <input type="text" name="soilType" />
+            </label>
+            <label class="form-field">
+              <span>32. Land use</span>
+              <select name="landUse">
+                <option value="">Select land use</option>
+                <option value="1 - Cultivated">1 - Cultivated</option>
+                <option value="2 - Pasture">2 - Pasture</option>
+                <option value="3 - Wooded">3 - Wooded</option>
+                <option value="4 - Urban">4 - Urban</option>
+                <option value="5 - Cemetery">5 - Cemetery</option>
+                <option value="6 - Submerged">6 - Submerged</option>
+                <option value="7 - Other">7 - Other</option>
+              </select>
+            </label>
+            <label class="form-field">
+              <span>Define “other”</span>
+              <input type="text" name="landUseOther" />
+            </label>
+            <label class="form-field">
+              <span>33. Contour elevation (ft/m)</span>
+              <input type="text" name="contourElevation" />
+            </label>
+            <label class="form-field form-field--wide">
+              <span>34. Literature sources</span>
+              <textarea name="literatureSources" rows="4"></textarea>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>35. Features present (indicate all that apply)</legend>
+          <div class="form-subsection">
+            <h3>Prehistoric</h3>
+            <div class="checkbox-grid">
+              <label><input type="checkbox" name="featuresPrehistoric" value="1 - House Basin" /> 1 - House Basin</label>
+              <label><input type="checkbox" name="featuresPrehistoric" value="2 - Storage Pit" /> 2 - Storage Pit</label>
+              <label><input type="checkbox" name="featuresPrehistoric" value="3 - Privy" /> 3 - Privy</label>
+              <label><input type="checkbox" name="featuresPrehistoric" value="4 - Burial Pit" /> 4 - Burial Pit</label>
+              <label><input type="checkbox" name="featuresPrehistoric" value="5 - Activity Foci" /> 5 - Activity Foci</label>
+              <label><input type="checkbox" name="featuresPrehistoric" value="6 - Cache" /> 6 - Cache</label>
+              <label><input type="checkbox" name="featuresPrehistoric" value="7 - Earth Oven" /> 7 - Earth Oven</label>
+              <label><input type="checkbox" name="featuresPrehistoric" value="8 - Hearth" /> 8 - Hearth</label>
+              <label><input type="checkbox" name="featuresPrehistoric" value="9 - Post Mold" /> 9 - Post Mold</label>
+              <label><input type="checkbox" name="featuresPrehistoric" value="10 - Wall Trench" /> 10 - Wall Trench</label>
+              <label><input type="checkbox" name="featuresPrehistoric" value="11 - Masonry/Daub Wall" /> 11 - Masonry/Daub Wall</label>
+              <label><input type="checkbox" name="featuresPrehistoric" value="12 - Nut Processing" /> 12 - Nut Processing</label>
+              <label><input type="checkbox" name="featuresPrehistoric" value="13 - Basins" /> 13 - Basins</label>
+              <label><input type="checkbox" name="featuresPrehistoric" value="14 - Medium Deep Pits (20-50 cm)" /> 14 - Medium Deep Pits (20-50 cm)</label>
+              <label><input type="checkbox" name="featuresPrehistoric" value="15 - Deep Pits (over 50 cm)" /> 15 - Deep Pits (over 50 cm)</label>
+              <label><input type="checkbox" name="featuresPrehistoric" value="16 - Bell Shaped Pit" /> 16 - Bell Shaped Pit</label>
+              <label><input type="checkbox" name="featuresPrehistoric" value="17 - Quarry Pit/Trench" /> 17 - Quarry Pit/Trench</label>
+              <label><input type="checkbox" name="featuresPrehistoric" value="18 - Other" /> 18 - Other</label>
+            </div>
+          </div>
+          <div class="form-subsection">
+            <h3>Historic</h3>
+            <div class="checkbox-grid">
+              <label><input type="checkbox" name="featuresHistoric" value="1 - Privy" /> 1 - Privy</label>
+              <label><input type="checkbox" name="featuresHistoric" value="2 - House Cellar" /> 2 - House Cellar</label>
+              <label><input type="checkbox" name="featuresHistoric" value="3 - House Foundation" /> 3 - House Foundation</label>
+              <label><input type="checkbox" name="featuresHistoric" value="4 - Well/Cistern" /> 4 - Well/Cistern</label>
+              <label><input type="checkbox" name="featuresHistoric" value="5 - Burial Pit" /> 5 - Burial Pit</label>
+              <label><input type="checkbox" name="featuresHistoric" value="6 - Activity Foci" /> 6 - Activity Foci</label>
+              <label><input type="checkbox" name="featuresHistoric" value="7 - Hearth" /> 7 - Hearth</label>
+              <label><input type="checkbox" name="featuresHistoric" value="8 - Wall Trench" /> 8 - Wall Trench</label>
+              <label><input type="checkbox" name="featuresHistoric" value="9 - Masonry/Daub Wall" /> 9 - Masonry/Daub Wall</label>
+              <label><input type="checkbox" name="featuresHistoric" value="10 - Mining Pit" /> 10 - Mining Pit</label>
+              <label><input type="checkbox" name="featuresHistoric" value="11 - Foundation" /> 11 - Foundation</label>
+              <label><input type="checkbox" name="featuresHistoric" value="12 - Rock Pile" /> 12 - Rock Pile</label>
+              <label><input type="checkbox" name="featuresHistoric" value="13 - Depression" /> 13 - Depression</label>
+              <label><input type="checkbox" name="featuresHistoric" value="14 - Tram/RR Bed" /> 14 - Tram/RR Bed</label>
+              <label><input type="checkbox" name="featuresHistoric" value="15 - Fence/Fence Post" /> 15 - Fence/Fence Post</label>
+              <label><input type="checkbox" name="featuresHistoric" value="16 - Road" /> 16 - Road</label>
+              <label><input type="checkbox" name="featuresHistoric" value="17 - Root Cellar" /> 17 - Root Cellar</label>
+              <label><input type="checkbox" name="featuresHistoric" value="18 - Improved Water Source" /> 18 - Improved Water Source</label>
+              <label><input type="checkbox" name="featuresHistoric" value="19 - Other" /> 19 - Other</label>
+            </div>
+            <label class="form-field form-field--wide">
+              <span>Define “other”</span>
+              <input type="text" name="featuresOther" />
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>36–38. Finds and remains</legend>
+          <div class="form-grid">
+            <label class="form-field form-field--wide">
+              <span>36. Floral / faunal remains</span>
+              <textarea name="floralFaunalRemains" rows="4"></textarea>
+            </label>
+            <label class="form-field">
+              <span>37. Human remains</span>
+              <select name="humanRemains">
+                <option value="">Select status</option>
+                <option value="1 - Reported, but not confirmed">1 - Reported, but not confirmed</option>
+                <option value="2 - Confirmed">2 - Confirmed</option>
+              </select>
+            </label>
+            <label class="form-field form-field--wide">
+              <span>38. Artifact descriptions</span>
+              <textarea name="artifactDescriptions" rows="5"></textarea>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>39–41. Supporting documentation</legend>
+          <div class="form-grid">
+            <label class="form-field form-field--wide">
+              <span>39. Artifact illustrations (describe files or references)</span>
+              <textarea name="artifactIllustrations" rows="3"></textarea>
+            </label>
+            <label class="form-field form-field--wide">
+              <span>40. Sketch map notes</span>
+              <textarea name="sketchMap" rows="3"></textarea>
+            </label>
+            <label class="form-field form-field--wide">
+              <span>41. USGS topographic map section notes</span>
+              <textarea name="usgsTopoMapSection" rows="3"></textarea>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Save site record</button>
+          <button type="reset" class="btn btn--ghost">Reset form</button>
+        </div>
+      </form>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <p>
+          This intake form stores submissions locally for SLU Campus Archaeology staff. Export or forward the compiled data when submitting to the Missouri SHPO.
+        </p>
+        <p>
+          Contact <a href="mailto:archaeology@slu.edu">archaeology@slu.edu</a> for assistance.
+        </p>
+      </div>
+    </footer>
+
+    <script src="assets/js/site-form.js" defer></script>
+  </body>
+</html>

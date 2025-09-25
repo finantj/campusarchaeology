@@ -11,13 +11,20 @@ An interactive website that showcases Saint Louis University's campus archaeolog
 
 ## Running the site locally
 
-The repository includes a lightweight Node server that serves the static site without any external dependencies.
+Install dependencies once to set up the local SQLite-backed server, then start the app:
 
 ```bash
+npm install
 npm start
 ```
 
-Then open [http://localhost:3000](http://localhost:3000) to explore the map. The server simply delivers the static assets so you can also use any alternative static file host if preferred.
+Open [http://localhost:3000](http://localhost:3000) to explore the map or access the data entry workflow.
+
+### Recording new site data
+
+- Visit [`/site-recordation.html`](http://localhost:3000/site-recordation.html) to complete the Missouri SHPO archaeological site recordation form. All dropdown values and checklists mirror the MO 780-1927 (10-10) specification.
+- Submissions are saved to `data/site-records.db`. Each multi-select field is stored as a JSON array so records can be exported or transformed later.
+- Existing entries can be retrieved from `GET /api/site-records` if you would like to audit or export data.
 
 ## Project data
 
