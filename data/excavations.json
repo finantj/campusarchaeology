@@ -1,0 +1,154 @@
+[
+  {
+    "title": "St. Francis Xavier College Church Plaza",
+    "coordinates": [38.63737, -90.23344],
+    "era": "19th Century Foundations",
+    "type": "excavation",
+    "typeLabel": "Targeted Excavation",
+    "years": "2017 Field School",
+    "startYear": 2017,
+    "themes": ["Religious Life", "Campus Infrastructure"],
+    "summary": "Students explored subsurface remains adjacent to the College Church, uncovering the footprint of earlier walkways and chapel landscaping.",
+    "timelineSummary": "Mapped masonry retaining walls and landscaping features that framed the expanding College Church plaza during the 1870s.",
+    "longDescription": "Archaeology students opened a series of test units across the plaza to document the evolution of sacred space at the heart of SLU. Their work revealed stacked stone retaining walls, compacted cinder pathways, and landscaping soils that speak to the campus beautification efforts that followed the church's 1884 dedication.",
+    "leadInvestigator": "Dr. Mary Mertz",
+    "artifactInventories": [
+      {
+        "category": "Architectural",
+        "count": 42,
+        "items": [
+          { "name": "Cut limestone fragments", "notes": "Likely from plaza edging" },
+          { "name": "Cast iron fasteners", "notes": "Recovered from fill layer" },
+          { "name": "Pressed brick segments", "notes": "Burned surfaces with mortar" }
+        ]
+      },
+      {
+        "category": "Personal Devotion",
+        "count": 19,
+        "items": [
+          { "name": "Glass rosary bead", "notes": "Blue opaque bead" },
+          { "name": "Medal of St. Louis", "notes": "Copper alloy, mid-19th century" },
+          { "name": "Ceramic figurine fragment", "notes": "Depicts angelic wing" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Pius XII Memorial Library Quad",
+    "coordinates": [38.63482, -90.23492],
+    "era": "Jesuit Expansion",
+    "type": "survey",
+    "typeLabel": "Ground Penetrating Radar Survey",
+    "years": "2019 Survey Season",
+    "startYear": 2019,
+    "themes": ["Student Life", "Landscape Change"],
+    "summary": "Geophysical survey mapped buried utilities, tree planting pits, and pathways that crisscrossed the library quad prior to its modern redesign.",
+    "timelineSummary": "Combined GPR and soil cores to reconstruct the 1950s landscaping plan and identify zones for future excavation.",
+    "longDescription": "SLU archaeologists collaborated with Facilities to model the subsurface architecture beneath the heavily used quad. By tracking reflections from multiple depths, the team located mid-century steam lines, forgotten foundation pads from temporary barracks, and layered planting soils associated with the campus's post-war expansion.",
+    "leadInvestigator": "Prof. Alicia Sanders",
+    "artifactInventories": [
+      {
+        "category": "Survey Samples",
+        "count": 12,
+        "items": [
+          { "name": "Soil core column", "notes": "Profiles 1.2 m of stratigraphy" },
+          { "name": "Charcoal flecks", "notes": "Recovered from 1940s bonfire lens" },
+          { "name": "Asphalt fragments", "notes": "Associated with former service road" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "DuBourg Hall Steps",
+    "coordinates": [38.63628, -90.23712],
+    "era": "Jesuit Relocation",
+    "type": "excavation",
+    "typeLabel": "Open-Area Excavation",
+    "years": "2021 Research Season",
+    "startYear": 2021,
+    "themes": ["Campus Architecture", "Student Rituals"],
+    "summary": "Excavations at the original administrative building revealed the remnants of the grand staircase and early campus utilities.",
+    "timelineSummary": "Documented limestone step treads, a brick drainage culvert, and deposits left by student gatherings at the foot of the hall.",
+    "longDescription": "A 6 x 4 m block excavation exposed the interface between DuBourg Hall and the surrounding parade ground. Investigators traced the sequence of stair construction, repairs, and adaptive reuse, while microartifact sampling captured evidence of student traditions including class bonfires and commencement ceremonies.",
+    "leadInvestigator": "Dr. Marcus Floyd",
+    "artifactInventories": [
+      {
+        "category": "Ceramics",
+        "count": 58,
+        "items": [
+          { "name": "Whiteware cup sherds", "notes": "Transfer print, ca. 1880" },
+          { "name": "Stoneware ink bottle", "notes": "Stamped 'St. Louis'" },
+          { "name": "Porcelain figurine base", "notes": "Likely commencement memento" }
+        ]
+      },
+      {
+        "category": "Student Life",
+        "count": 34,
+        "items": [
+          { "name": "Clay smoking pipe stems", "notes": "13/64 bore diameter" },
+          { "name": "Copper fraternity badge", "notes": "Recovered near stair landing" },
+          { "name": "Bakelite button", "notes": "From graduation regalia" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Griesedieck Complex Courtyard",
+    "coordinates": [38.63363, -90.23641],
+    "era": "Post-War Modernization",
+    "type": "excavation",
+    "typeLabel": "Shovel Test Survey",
+    "years": "2022 Field School",
+    "startYear": 2022,
+    "themes": ["Student Housing", "Environmental History"],
+    "summary": "Systematic shovel tests documented landscape fills and communal spaces associated with 1960s residential towers.",
+    "timelineSummary": "Identified borrow soils, planting beds, and recreational surfaces that supported a generation of residential students.",
+    "longDescription": "Undergraduate archaeologists excavated shovel test pits across the courtyard to study how the construction of the Griesedieck Complex reshaped campus ecology. The team recorded thick mechanically deposited fills, remnants of brick patios, and environmental samples capturing the courtyard's evolution into a social hub.",
+    "leadInvestigator": "Katie Nguyen, MA",
+    "artifactInventories": [
+      {
+        "category": "Recreational Life",
+        "count": 27,
+        "items": [
+          { "name": "Vinyl record fragment", "notes": "Motown single" },
+          { "name": "Foosball ball", "notes": "Recovered from drainage trench" },
+          { "name": "Aluminum can pull tab", "notes": "Ring pull, ca. 1965" }
+        ]
+      },
+      {
+        "category": "Environmental Samples",
+        "count": 16,
+        "items": [
+          { "name": "Pollen column", "notes": "Indicates ornamental plantings" },
+          { "name": "Soil micromorph slide", "notes": "Captured turf maintenance layers" },
+          { "name": "Charred seed", "notes": "Fire pit deposit" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Bannister House Laboratory",
+    "coordinates": [38.63819, -90.23182],
+    "era": "Community Collaborations",
+    "type": "lab",
+    "typeLabel": "Collections Processing Lab",
+    "years": "Ongoing",
+    "startYear": 2015,
+    "themes": ["Collections Care", "Community Engagement"],
+    "summary": "Historic Bannister House hosts the Campus Archaeology lab where student volunteers catalog materials from across SLU excavation projects.",
+    "timelineSummary": "Transformed a historic residence into a teaching laboratory equipped for washing, cataloging, and analyzing artifact collections.",
+    "longDescription": "The Bannister House laboratory is the heart of the program's artifact stewardship. Inside the 1890s residence, students clean and catalog finds, digitize field records, and welcome community partners to explore SLU's heritage collections. The lab anchors public archaeology programming with open houses and artifact identification days.",
+    "leadInvestigator": "Collections Manager Priya Shah",
+    "artifactInventories": [
+      {
+        "category": "Processed Collections",
+        "count": 143,
+        "items": [
+          { "name": "Bagged ceramic lots", "notes": "Cross-referenced to provenience" },
+          { "name": "3D printed replicas", "notes": "Used for outreach events" },
+          { "name": "Digital catalog records", "notes": "Hosted in artifact database" }
+        ]
+      }
+    ]
+  }
+]
