@@ -1,0 +1,247 @@
+[
+  {
+    "id": "dubourg-accessibility",
+    "title": "DuBourg Hall Accessibility Excavation",
+    "type": "excavation",
+    "era": "19th-century campus",
+    "focus": "Campus infrastructure",
+    "years": "2017–2018",
+    "startYear": 2017,
+    "coordinates": [38.63674, -90.23497],
+    "location": "DuBourg Hall plaza",
+    "teaser": "Documented the original sandstone walk and utilities that served SLU's first purpose-built campus building.",
+    "summary": "Archaeologists monitored new accessibility upgrades at DuBourg Hall and excavated targeted units to document the original entrance sequence. The team recorded intact brick pavers, sandstone curbs, and utility trenches tied to late nineteenth-century campus expansion.",
+    "timelineNote": "Revealed DuBourg Hall's nineteenth-century entrance walkway and infrastructure.",
+    "discoveries": [
+      "Mapped the alignment of the 1888 sandstone entry walk and granite edging.",
+      "Exposed brick-lined utility chases that fed steam heat to the hall.",
+      "Recovered personal items lost by students during early campus processions."
+    ],
+    "artifacts": [
+      {
+        "category": "Ceramics",
+        "items": [
+          "Hand-painted whiteware serving dish fragment",
+          "Transfer-printed plate rim with Jesuit emblem"
+        ]
+      },
+      {
+        "category": "Metal",
+        "items": [
+          "Iron fence fastener from the original forecourt",
+          "Copper-alloy suspender clasp"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cupples-landscape-survey",
+    "title": "Cupples House Landscape Survey",
+    "type": "survey",
+    "era": "Gilded Age landscaping",
+    "focus": "Landscape history",
+    "years": "2015",
+    "startYear": 2015,
+    "coordinates": [38.63796, -90.2349],
+    "location": "Cupples House terrace",
+    "teaser": "Surface survey and soil probes traced garden beds and carriage routes around the historic Cupples family residence.",
+    "summary": "Students conducted a pedestrian survey combined with soil probing to understand how Henry and Margaret Cupples shaped their domestic landscape. Findings refined the footprint of formal garden beds and identified the packed gravel loop that once delivered guests to the front portico.",
+    "timelineNote": "Mapped ornamental plantings and carriage circulation at Cupples House.",
+    "discoveries": [
+      "Recovered imported horticultural glass used for cold-frame construction.",
+      "Traced compacted gravel from the carriage turnaround across the terrace.",
+      "Identified planting soils rich with nineteenth-century floral remains."
+    ],
+    "artifacts": [
+      {
+        "category": "Glass",
+        "items": [
+          "Flat horticultural glass with putty residue",
+          "Milk glass vessel used for garden seed storage"
+        ]
+      },
+      {
+        "category": "Botanical",
+        "items": [
+          "Carbonized boxwood stems",
+          "Seeds from heirloom rose cultivars"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "college-church-monitoring",
+    "title": "College Church Utility Monitoring",
+    "type": "survey",
+    "era": "Early 20th-century modernization",
+    "focus": "Building services",
+    "years": "2013",
+    "startYear": 2013,
+    "coordinates": [38.63621, -90.23389],
+    "location": "College Church east transept",
+    "teaser": "Monitored utility trenching to record buried architectural features near St. Francis Xavier College Church.",
+    "summary": "Campus archaeology staff monitored the installation of chilled water lines along the east wall of College Church. Documentation captured the footings for an earlier chapel expansion and brick-filled shaft features that once carried coal to the basement boilers.",
+    "timelineNote": "Recorded service trenches that chronicle the church's modernization.",
+    "discoveries": [
+      "Identified limestone pier bases associated with an 1890s transept addition.",
+      "Profiled a deep utility cut filled with domestic refuse from Jesuit residences.",
+      "Recovered blue-decorated stoneware tied to parish gatherings."
+    ],
+    "artifacts": [
+      {
+        "category": "Ceramics",
+        "items": [
+          "Blue banded stoneware crock sherds",
+          "Porcelain rosary medal fragment"
+        ]
+      },
+      {
+        "category": "Faunal",
+        "items": [
+          "Butchered bovine long bone with chop marks",
+          "Fish vertebrae from parish fish fries"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "jesuit-garden-field-school",
+    "title": "Jesuit Garden Field School",
+    "type": "excavation",
+    "era": "Mission-era landscape",
+    "focus": "Student training",
+    "years": "2019",
+    "startYear": 2019,
+    "coordinates": [38.63723, -90.23615],
+    "location": "Jesuit Garden lawn",
+    "teaser": "Summer field school revealed walkways, planting pits, and social spaces in the heart of the historic campus green.",
+    "summary": "Graduate and undergraduate students excavated paired units across the Jesuit Garden to investigate how the space functioned as a gathering ground. Results exposed gravel walkways, post settings for commemorative arches, and soil chemistry linked to ornamental plantings.",
+    "timelineNote": "Field school training uncovered the social landscape of the Jesuit Garden.",
+    "discoveries": [
+      "Defined the arc of a gravel path leading to the Soldiers' Memorial.",
+      "Documented paired post molds that supported a temporary commencement arch.",
+      "Captured pollen signatures from long-removed magnolia trees."
+    ],
+    "artifacts": [
+      {
+        "category": "Personal items",
+        "items": [
+          "Bronze Jesuit ring fragment",
+          "Stamped brass uniform button"
+        ]
+      },
+      {
+        "category": "Botanical",
+        "items": [
+          "Magnolia pollen grains",
+          "Carbonized tulip poplar bark"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "griesedieck-test-units",
+    "title": "Griesedieck Residence Hall Test Units",
+    "type": "excavation",
+    "era": "Mid-century expansion",
+    "focus": "Campus housing",
+    "years": "2016",
+    "startYear": 2016,
+    "coordinates": [38.63758, -90.23247],
+    "location": "Griesedieck Hall courtyard",
+    "teaser": "Test units ahead of utility upgrades located remnants of the 1940s athletic complex and student recreation areas.",
+    "summary": "Prior to replacing chilled water lines, archaeologists excavated shovel tests and a block excavation through the Griesedieck courtyard. The work preserved foundations from the former Walsh Stadium concessions and documented refuse deposits from mid-century dorm life.",
+    "timelineNote": "Linked campus housing upgrades to the legacy of Walsh Stadium.",
+    "discoveries": [
+      "Mapped poured concrete footings for stadium ticket windows.",
+      "Recovered glass soda bottles and dance wristbands from 1950s student events.",
+      "Documented red cinder surfaces from the athletic track."
+    ],
+    "artifacts": [
+      {
+        "category": "Glass",
+        "items": [
+          "Embossed Vess soda bottle",
+          "Fraternity formal punch cup"
+        ]
+      },
+      {
+        "category": "Industrial",
+        "items": [
+          "Steel anchor bolt with stamped builder's mark",
+          "Electrical conduit junction box"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stem-research-center",
+    "title": "Interdisciplinary Science and Engineering Building Mitigation",
+    "type": "excavation",
+    "era": "Contemporary campus",
+    "focus": "Construction mitigation",
+    "years": "2021",
+    "startYear": 2021,
+    "coordinates": [38.63495, -90.23472],
+    "location": "Olive-Compton redevelopment zone",
+    "teaser": "Data recovery ahead of the new science complex captured industrial foundations and immigrant neighborhood materials.",
+    "summary": "Mitigation excavations for the Interdisciplinary Science and Engineering Building documented the layered history of the Olive-Compton corridor. Crews exposed brick rowhouse basements, brewery outbuildings, and backyard middens from nineteenth-century immigrant households before construction began.",
+    "timelineNote": "Recovered working-class neighborhood remains beneath the new science complex.",
+    "discoveries": [
+      "Excavated intact limestone footings from Anheuser estate outbuildings.",
+      "Cataloged household ceramics from German and Irish tenant families.",
+      "Identified slag-filled drainage features from twentieth-century industry."
+    ],
+    "artifacts": [
+      {
+        "category": "Household",
+        "items": [
+          "Flow blue tableware set fragments",
+          "Stoneware beer bottle with applied blob top"
+        ]
+      },
+      {
+        "category": "Industrial",
+        "items": [
+          "Iron slag nodules",
+          "Machined valve plate from bottling works"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "artifact-conservation-lab",
+    "title": "Artifact Conservation and Cataloging Lab",
+    "type": "lab",
+    "era": "Ongoing program",
+    "focus": "Collections stewardship",
+    "years": "2014–present",
+    "startYear": 2014,
+    "coordinates": [38.63652, -90.23801],
+    "location": "Campus archaeology laboratory",
+    "teaser": "Students stabilize and catalog materials from decades of campus excavations for long-term stewardship.",
+    "summary": "Within SLU's archaeology laboratory, students clean, conserve, and catalog artifacts recovered from campus fieldwork. The lab develops reference collections, digitizes provenience data, and prepares interpretive exhibits for campus partners.",
+    "timelineNote": "Collections lab keeps recovered artifacts ready for research and exhibition.",
+    "discoveries": [
+      "Stabilized fragile stained-glass fragments from College Church.",
+      "3D scanned carved limestone fragments for digital curation.",
+      "Created teaching kits that feature ceramics, metals, and faunal remains."
+    ],
+    "artifacts": [
+      {
+        "category": "Curated collections",
+        "items": [
+          "Digitally cataloged 2,800 diagnostic sherds",
+          "Microclimate storage for iron artifacts"
+        ]
+      },
+      {
+        "category": "Exhibit materials",
+        "items": [
+          "Interpretive panels on Walsh Stadium",
+          "Touch-friendly replicas for outreach"
+        ]
+      }
+    ]
+  }
+]
