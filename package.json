@@ -1,0 +1,20 @@
+{
+  "name": "campusarchaeology",
+  "version": "1.2.0",
+  "description": "Interactive campus archaeology website for Saint Louis University",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "archaeology",
+    "mapping",
+    "slu"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "sqlite3": "^5.1.7"
+  }
+}
