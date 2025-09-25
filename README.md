@@ -1,55 +1,37 @@
-# Campus Archaeology Interactive Map
+# Saint Louis University Campus Archaeology
 
-An interactive single-page website that showcases Saint Louis University's campus archaeology program. The site combines a Leaflet-powered map, excavation timeline, and artifact inventories to help visitors explore current and past research.
+An interactive website that showcases Saint Louis University's campus archaeology program. The experience combines a Leaflet-powered map, timeline, and catalog to highlight excavations, surveys, and laboratory projects while surfacing artifact inventories from each investigation.
 
 ## Features
 
-- **Interactive mapping** of excavation, survey, and laboratory locations across SLU's campus.
-- **Project catalog** with quick filtering by era and research theme.
-- **Artifact inventories** that summarize materials recovered from each investigation.
-- **Timeline view** highlighting the sequence of campus archaeology projects.
-- **Digital Missouri SHPO site recordation form** that mirrors the state paperwork and
-  saves submissions into a local SQLite database for future reference.
+- **Interactive campus map** with custom markers for excavation, survey, and laboratory projects.
+- **Filterable project catalog** that narrows results by era and research focus while keeping the map and timeline in sync.
+- **Detailed project drawer** describing locations, goals, discoveries, and curated artifact inventories.
+- **Chronological timeline** illustrating how campus archaeology work has evolved across the Midtown campus.
 
-## Getting Started
+## Running the site locally
 
-This project now includes a lightweight Node/Express server that serves the front end and
-persists Missouri SHPO site records to a SQLite database.
+The repository includes a lightweight Node server that serves the static site without any external dependencies.
 
-1. Install dependencies:
+```bash
+npm start
+```
 
-   ```bash
-   npm install
-   ```
+Then open [http://localhost:3000](http://localhost:3000) to explore the map. The server simply delivers the static assets so you can also use any alternative static file host if preferred.
 
-2. Start the server:
+## Project data
 
-   ```bash
-   npm start
-   ```
+Project information lives in [`data/excavations.json`](data/excavations.json). Each entry includes:
 
-3. Visit [http://localhost:3000](http://localhost:3000) to explore the map and submit site
-   records. The SQLite database file is created automatically at `data/site-records.db`.
+- `title`, `type`, `era`, `focus`, `years`, and `location` metadata.
+- `coordinates` for map placement (latitude, longitude).
+- Narrative fields (`teaser`, `summary`, `timelineNote`).
+- Arrays of `discoveries` and `artifacts` (each artifact group lists a category with bullet points).
 
-To clear stored submissions, stop the server and delete `data/site-records.db`.
-
-### Submitting Missouri SHPO records
-
-- The digital form reproduces the latest SHPO archaeological site recordation worksheet,
-  including dropdown and checkbox options from the official instructions.
-- Required fields (County, Information Current As Of, and Recorder Name/Address) must be
-  completed before the record can be saved.
-- Attachments (items 39–41) are tracked via checkboxes indicating whether supporting
-  documents are included offline.
-- Saved submissions appear in the **Stored Site Records** panel beneath the form and can be
-  reviewed without leaving the page.
-
-## Data Structure
-
-Project data lives in [`data/excavations.json`](data/excavations.json). Each project entry includes coordinates, descriptive fields, and artifact inventory sections. Update this file to add new excavations or collections work.
+Update or expand this file to add additional Saint Louis University excavations, surveys, or laboratory initiatives. The interface automatically reflects new entries on the map, timeline, and catalog once the data file is saved.
 
 ## Acknowledgements
 
 - Mapping powered by [Leaflet](https://leafletjs.com/) and OpenStreetMap tiles.
 - Typography from Playfair Display and Source Sans 3 via Google Fonts.
-- Hero image courtesy of Unsplash (campus architecture by Matthew T Rader).
+- Hero imagery courtesy of [Unsplash](https://unsplash.com/).

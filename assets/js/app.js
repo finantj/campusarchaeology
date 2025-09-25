@@ -1,483 +1,375 @@
-const map = L.map("map", {
-  center: [38.6355, -90.2345],
-  zoom: 15,
-  scrollWheelZoom: false,
-  tap: false,
-});
+(function () {
+  const eraSelect = document.getElementById('filter-era');
+  const focusSelect = document.getElementById('filter-focus');
+  const resetButton = document.getElementById('reset-filters');
+  const resultCount = document.getElementById('result-count');
+  const projectGrid = document.getElementById('project-grid');
+  const timelineList = document.getElementById('timeline-list');
+  const detailPanel = document.getElementById('detail-panel');
+  const detailTitle = document.getElementById('detail-title');
+  const detailIntro = document.getElementById('detail-intro');
+  const detailMeta = document.getElementById('detail-meta');
+  const detailSummary = document.getElementById('detail-summary');
+  const detailDiscoveries = document.getElementById('detail-discoveries');
+  const detailArtifacts = document.getElementById('detail-artifacts');
 
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution: "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
-  maxZoom: 20,
-}).addTo(map);
-
-const eraFilter = document.getElementById("era-filter");
-const themeFilter = document.getElementById("theme-filter");
-const timelineTrack = document.getElementById("timeline-track");
-const projectGrid = document.getElementById("project-grid");
-const siteTitle = document.getElementById("site-title");
-const siteDescription = document.getElementById("site-description");
-const siteMeta = document.getElementById("site-meta");
-const artifactInventory = document.getElementById("artifact-inventory");
-const siteRecordForm = document.getElementById("site-record-form");
-const siteRecordStatus = document.getElementById("site-record-status");
-const siteRecordList = document.getElementById("site-record-list");
-
-const layerGroup = L.layerGroup().addTo(map);
-let projects = [];
-let currentMarker;
-
-async function loadProjects() {
-  try {
-    const response = await fetch("data/excavations.json");
-    projects = await response.json();
-    if (!Array.isArray(projects) || !projects.length) {
-      throw new Error("Dataset is empty");
-    }
-
-    populateFilters();
-    renderProjects(projects);
-    renderTimeline(projects);
-    addMarkers(projects);
-    updateDetails(projects[0]);
-  } catch (error) {
-    siteTitle.textContent = "Unable to load data";
-    siteDescription.textContent =
-      "We couldn't load the excavation catalog. Please refresh to try again.";
-    console.error("Failed to load project data", error);
-  }
-}
-
-function populateFilters() {
-  const eras = new Set();
-  const themes = new Set();
-
-  projects.forEach((project) => {
-    eras.add(project.era);
-    project.themes.forEach((theme) => themes.add(theme));
-  });
-
-  eras.forEach((era) => {
-    const option = document.createElement("option");
-    option.value = era;
-    option.textContent = era;
-    eraFilter.append(option);
-  });
-
-  Array.from(themes)
-    .sort()
-    .forEach((theme) => {
-      const option = document.createElement("option");
-      option.value = theme;
-      option.textContent = theme;
-      themeFilter.append(option);
-    });
-}
-
-function addMarkers(projectList) {
-  layerGroup.clearLayers();
-
-  projectList.forEach((project) => {
-    const colorMap = {
-      excavation: "#f86d70",
-      survey: "#43b581",
-      lab: "#ffc857",
-    };
-
-    const markerColor = colorMap[project.type] ?? "#002554";
-
-    const marker = L.circleMarker(project.coordinates, {
-      radius: 10,
-      color: markerColor,
-      fillColor: markerColor,
-      fillOpacity: 0.85,
-      weight: 2,
-    }).addTo(layerGroup);
-
-    marker.bindPopup(
-      `<div class="popup"><h3>${project.title}</h3><p>${project.summary}</p></div>`
-    );
-
-    marker.on("click", () => {
-      updateDetails(project);
-      scrollIntoView();
-    });
-
-    project.marker = marker;
-  });
-}
-
-function renderProjects(projectList) {
-  projectGrid.innerHTML = "";
-
-  projectList.forEach((project) => {
-    const card = document.createElement("article");
-    card.className = "project-card";
-    card.tabIndex = 0;
-
-    card.innerHTML = `
-      <h3>${project.title}</h3>
-      <p>${project.summary}</p>
-      <div class="project-card__meta">
-        <span aria-label="Era">📜 ${project.era}</span>
-        <span aria-label="Years active">📅 ${project.years}</span>
-      </div>
-      <button type="button">View details</button>
-    `;
-
-    card.querySelector("button").addEventListener("click", () => {
-      focusProject(project);
-    });
-
-    card.addEventListener("keypress", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        focusProject(project);
-      }
-    });
-
-    projectGrid.append(card);
-  });
-}
-
-function renderTimeline(projectList) {
-  timelineTrack.innerHTML = "";
-
-  projectList
-    .slice()
-    .sort((a, b) => a.startYear - b.startYear)
-    .forEach((project) => {
-      const item = document.createElement("article");
-      item.className = "timeline__item";
-      item.innerHTML = `
-        <span class="timeline__year">${project.years}</span>
-        <h3>${project.title}</h3>
-        <p class="timeline__summary">${project.timelineSummary}</p>
-      `;
-      item.addEventListener("click", () => focusProject(project));
-      timelineTrack.append(item);
-    });
-}
-
-function updateDetails(project) {
-  if (!project) {
+  if (!projectGrid || !timelineList) {
     return;
   }
 
-  siteTitle.textContent = project.title;
-  siteDescription.textContent = project.longDescription;
+  detailPanel.setAttribute('tabindex', '-1');
 
-  siteMeta.innerHTML = "";
-  const metaItems = [
-    { label: "Era", value: project.era },
-    { label: "Investigation", value: project.typeLabel },
-    { label: "Years", value: project.years },
-    { label: "Lead", value: project.leadInvestigator },
-  ];
-
-  metaItems.forEach((meta) => {
-    if (!meta.value) return;
-    const chip = document.createElement("span");
-    chip.className = "meta-chip";
-    chip.textContent = `${meta.label}: ${meta.value}`;
-    siteMeta.append(chip);
-  });
-
-  artifactInventory.innerHTML = "";
-
-  project.artifactInventories.forEach((inventory) => {
-    const wrapper = document.createElement("section");
-    wrapper.className = "inventory";
-    wrapper.innerHTML = `
-      <div class="inventory__header">
-        <h4>${inventory.category}</h4>
-        <span class="inventory__count">${inventory.count} items</span>
-      </div>
-      <ul class="inventory__list">
-        ${inventory.items
-          .map(
-            (item) => `
-              <li class="inventory__item">
-                <span>${item.name}</span>
-                <span>${item.notes}</span>
-              </li>
-            `
-          )
-          .join("")}
-      </ul>
-    `;
-    artifactInventory.append(wrapper);
-  });
-
-  highlightMarker(project);
-}
-
-function focusProject(project) {
-  updateDetails(project);
-  if (project.marker) {
-    project.marker.openPopup();
-  }
-  map.flyTo(project.coordinates, 17, {
-    duration: 0.8,
-  });
-  scrollIntoView();
-}
-
-function highlightMarker(project) {
-  if (currentMarker) {
-    currentMarker.setStyle({ radius: 10 });
-  }
-
-  if (project.marker) {
-    project.marker.setStyle({ radius: 14 });
-    currentMarker = project.marker;
-  }
-}
-
-function filterProjects() {
-  const era = eraFilter.value;
-  const theme = themeFilter.value;
-
-  const filtered = projects.filter((project) => {
-    const eraMatch = era === "all" || project.era === era;
-    const themeMatch = theme === "all" || project.themes.includes(theme);
-    return eraMatch && themeMatch;
-  });
-
-  renderProjects(filtered);
-  renderTimeline(filtered);
-  addMarkers(filtered);
-
-  if (filtered.length) {
-    updateDetails(filtered[0]);
-    map.flyTo(filtered[0].coordinates, 16, { duration: 0.6 });
-  } else {
-    siteTitle.textContent = "No projects match the filters";
-    siteDescription.textContent =
-      "Try selecting a different era or research theme to discover more excavations.";
-    siteMeta.innerHTML = "";
-    artifactInventory.innerHTML = "";
-  }
-}
-
-function scrollIntoView() {
-  if (window.innerWidth < 980) {
-    document
-      .getElementById("map-section")
-      .scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-}
-
-eraFilter.addEventListener("change", filterProjects);
-themeFilter.addEventListener("change", filterProjects);
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("copyright-year").textContent = new Date()
-    .getFullYear()
-    .toString();
-});
-
-loadProjects();
-
-function getCheckedValues(form, selector) {
-  return Array.from(form.querySelectorAll(selector)).map((input) => input.value);
-}
-
-function nullableValue(value) {
-  if (value == null) return null;
-  const trimmed = value.trim();
-  return trimmed.length ? trimmed : null;
-}
-
-function formatDate(value, options = {}) {
-  if (!value) return null;
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) {
-    return value;
-  }
-  return date.toLocaleDateString(undefined, options);
-}
-
-async function submitSiteRecord(event) {
-  event.preventDefault();
-  if (!siteRecordForm) return;
-
-  if (siteRecordStatus) {
-    siteRecordStatus.textContent = "Submitting record...";
-  }
-
-  const formData = new FormData(siteRecordForm);
-  const payload = {
-    county: nullableValue(formData.get("county") ?? ""),
-    localNameFieldNumber: nullableValue(formData.get("localNameFieldNumber") ?? ""),
-    shpoSiteNumber: nullableValue(formData.get("shpoSiteNumber") ?? ""),
-    sectionLandGrant: nullableValue(formData.get("sectionLandGrant") ?? ""),
-    township: nullableValue(formData.get("township") ?? ""),
-    range: nullableValue(formData.get("range") ?? ""),
-    isUpdate: nullableValue(formData.get("isUpdate") ?? ""),
-    quadName: nullableValue(formData.get("quadName") ?? ""),
-    topoDate: nullableValue(formData.get("topoDate") ?? ""),
-    siteAreaM2: nullableValue(formData.get("siteAreaM2") ?? ""),
-    utmZone: nullableValue(formData.get("utmZone") ?? ""),
-    utmNorthing: nullableValue(formData.get("utmNorthing") ?? ""),
-    utmEasting: nullableValue(formData.get("utmEasting") ?? ""),
-    datum: nullableValue(formData.get("datum") ?? ""),
-    nrhpStatus: nullableValue(formData.get("nrhpStatus") ?? ""),
-    ownerAddress: nullableValue(formData.get("ownerAddress") ?? ""),
-    tenantAddress: nullableValue(formData.get("tenantAddress") ?? ""),
-    informationCurrentAsOf: nullableValue(formData.get("informationCurrentAsOf") ?? ""),
-    recorderNameAddress: nullableValue(formData.get("recorderNameAddress") ?? ""),
-    recordingOrganization: nullableValue(formData.get("recordingOrganization") ?? ""),
-    siteDescription: nullableValue(formData.get("siteDescription") ?? ""),
-    culturalAffiliation: getCheckedValues(
-      siteRecordForm,
-      'input[name="culturalAffiliation"]:checked'
-    ),
-    culturalOtherPrehistoric: nullableValue(
-      formData.get("culturalOtherPrehistoric") ?? ""
-    ),
-    culturalOtherHistoric: nullableValue(
-      formData.get("culturalOtherHistoric") ?? ""
-    ),
-    siteType: getCheckedValues(siteRecordForm, 'input[name="siteType"]:checked'),
-    siteTypeOther: nullableValue(formData.get("siteTypeOther") ?? ""),
-    waterSource: nullableValue(formData.get("waterSource") ?? ""),
-    waterSourceOther: nullableValue(formData.get("waterSourceOther") ?? ""),
-    waterSourceName: nullableValue(formData.get("waterSourceName") ?? ""),
-    waterSourceDistance: nullableValue(formData.get("waterSourceDistance") ?? ""),
-    topographicLocation: nullableValue(formData.get("topographicLocation") ?? ""),
-    topographicOther: nullableValue(formData.get("topographicOther") ?? ""),
-    materialsReported: getCheckedValues(
-      siteRecordForm,
-      'input[name="materialsReported"]:checked'
-    ),
-    materialsOther: nullableValue(formData.get("materialsOther") ?? ""),
-    collectionStatus: nullableValue(formData.get("collectionStatus") ?? ""),
-    repository: nullableValue(formData.get("repository") ?? ""),
-    remoteSensing: getCheckedValues(
-      siteRecordForm,
-      'input[name="remoteSensing"]:checked'
-    ),
-    remoteOther: nullableValue(formData.get("remoteOther") ?? ""),
-    samplingTechniques: getCheckedValues(
-      siteRecordForm,
-      'input[name="samplingTechniques"]:checked'
-    ),
-    samplingOther: nullableValue(formData.get("samplingOther") ?? ""),
-    soilType: nullableValue(formData.get("soilType") ?? ""),
-    landUse: nullableValue(formData.get("landUse") ?? ""),
-    landUseOther: nullableValue(formData.get("landUseOther") ?? ""),
-    contourElevation: nullableValue(formData.get("contourElevation") ?? ""),
-    literatureSources: nullableValue(formData.get("literatureSources") ?? ""),
-    featuresPrehistoric: getCheckedValues(
-      siteRecordForm,
-      'input[name="featuresPrehistoric"]:checked'
-    ),
-    featuresPrehistoricOther: nullableValue(
-      formData.get("featuresPrehistoricOther") ?? ""
-    ),
-    featuresHistoric: getCheckedValues(
-      siteRecordForm,
-      'input[name="featuresHistoric"]:checked'
-    ),
-    featuresHistoricOther: nullableValue(formData.get("featuresHistoricOther") ?? ""),
-    floralFaunalRemains: nullableValue(formData.get("floralFaunalRemains") ?? ""),
-    humanRemains: nullableValue(formData.get("humanRemains") ?? ""),
-    artifactDescriptions: nullableValue(formData.get("artifactDescriptions") ?? ""),
-    artifactIllustrationsAttached: formData.has("artifactIllustrationsAttached"),
-    sketchMapAttached: formData.has("sketchMapAttached"),
-    topoMapSectionAttached: formData.has("topoMapSectionAttached"),
+  const typeLabels = {
+    excavation: 'Excavation',
+    survey: 'Survey',
+    lab: 'Laboratory'
   };
 
-  try {
-    const response = await fetch("/api/site-records", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+  let map;
+  const markerLayer = L.layerGroup();
+  const markersById = new Map();
+
+  let allProjects = [];
+  let filteredProjects = [];
+  let activeProjectId = null;
+
+  const cardRefs = new Map();
+  const timelineRefs = new Map();
+
+  const markerIcons = {
+    excavation: L.divIcon({
+      className: 'marker marker--excavation',
+      iconSize: [24, 24],
+      iconAnchor: [12, 24]
+    }),
+    survey: L.divIcon({
+      className: 'marker marker--survey',
+      iconSize: [24, 24],
+      iconAnchor: [12, 24]
+    }),
+    lab: L.divIcon({
+      className: 'marker marker--lab',
+      iconSize: [24, 24],
+      iconAnchor: [12, 24]
+    })
+  };
+
+  async function loadProjects() {
+    const response = await fetch('data/excavations.json');
+    if (!response.ok) {
+      throw new Error('Unable to load excavation data');
+    }
+    return response.json();
+  }
+
+  function initMap() {
+    map = L.map('map', {
+      scrollWheelZoom: false,
+      tap: true
+    }).setView([38.6365, -90.2345], 16);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    markerLayer.addTo(map);
+  }
+
+  function populateFilters(projects) {
+    const eras = Array.from(new Set(projects.map((project) => project.era))).sort(
+      (a, b) => a.localeCompare(b)
+    );
+    const focuses = Array.from(
+      new Set(projects.map((project) => project.focus))
+    ).sort((a, b) => a.localeCompare(b));
+
+    eras.forEach((era) => {
+      const option = document.createElement('option');
+      option.value = era;
+      option.textContent = era;
+      eraSelect.appendChild(option);
     });
 
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({}));
-      const details = Array.isArray(error.details) && error.details.length
-        ? `: ${error.details.join(", ")}`
-        : "";
-      throw new Error((error.error || "Unable to store record") + details);
-    }
-
-    siteRecordForm.reset();
-    if (siteRecordStatus) {
-      siteRecordStatus.textContent = "Record saved successfully.";
-    }
-    await loadSiteRecords();
-  } catch (error) {
-    console.error("Failed to submit site record", error);
-    if (siteRecordStatus) {
-      siteRecordStatus.textContent =
-        error.message || "We were unable to save the record. Please try again.";
-    }
+    focuses.forEach((focus) => {
+      const option = document.createElement('option');
+      option.value = focus;
+      option.textContent = focus;
+      focusSelect.appendChild(option);
+    });
   }
-}
 
-async function loadSiteRecords() {
-  if (!siteRecordList) return;
-
-  try {
-    const response = await fetch("/api/site-records");
-    if (!response.ok) {
-      throw new Error("Unable to load stored records");
-    }
-
-    const records = await response.json();
-    if (!records.length) {
-      siteRecordList.innerHTML =
-        '<p class="records__empty">No site records have been stored yet.</p>';
+  function updateResultSummary(list) {
+    if (!list.length) {
+      resultCount.textContent = 'No projects match the current filters.';
       return;
     }
 
-    siteRecordList.innerHTML = "";
-    records.forEach((record) => {
-      const card = document.createElement("article");
-      card.className = "record-card";
+    const label = list.length === 1 ? 'project' : 'projects';
+    resultCount.textContent = `Showing ${list.length} ${label}`;
+  }
 
-      const createdDate =
-        formatDate(record.created_at, {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-        }) || record.created_at || "";
-      const affiliations = Array.isArray(record.cultural_affiliation)
-        ? record.cultural_affiliation.join(", ")
-        : record.cultural_affiliation || "None provided";
-      const infoCurrent = formatDate(record.information_current_as_of) ||
-        record.information_current_as_of ||
-        "Not provided";
+  function clearDetailPanel() {
+    activeProjectId = null;
+    detailTitle.textContent = 'Choose a project';
+    detailIntro.textContent =
+      'Use the map markers, timeline, or project list to learn more about each field school, excavation, and laboratory investigation.';
+    detailMeta.innerHTML = '';
+    detailSummary.innerHTML = '';
+    detailDiscoveries.innerHTML = '';
+    detailArtifacts.innerHTML = '';
+  }
 
+  function renderMetaRow(label, value) {
+    const dt = document.createElement('dt');
+    dt.textContent = label;
+    const dd = document.createElement('dd');
+    dd.textContent = value;
+    detailMeta.append(dt, dd);
+  }
+
+  function renderProjects(list) {
+    projectGrid.innerHTML = '';
+    cardRefs.clear();
+
+    list.forEach((project) => {
+      const card = document.createElement('article');
+      card.className = 'project-card';
+      card.setAttribute('role', 'listitem');
+      card.tabIndex = 0;
+      card.dataset.projectId = project.id;
       card.innerHTML = `
-        <div class="record-card__header">
-          <div>
-            <h4 class="record-card__title">${record.county || "Unknown County"}</h4>
-            <p class="record-card__meta">${record.local_name_field_number || "Field ID N/A"}</p>
-          </div>
-          <span class="record-card__meta">${createdDate}</span>
-        </div>
-        <div class="record-card__body">
-          <p><strong>Recorder:</strong> ${record.recorder_name_address || "Not provided"}</p>
-          <p><strong>Information current as of:</strong> ${infoCurrent}</p>
-          <p><strong>Cultural affiliation:</strong> ${affiliations}</p>
-        </div>
+        <span class="project-card__type">${typeLabels[project.type] || 'Project'}</span>
+        <h3 class="project-card__title">${project.title}</h3>
+        <p class="project-card__meta">${project.location} • ${project.years}</p>
+        <p class="project-card__summary">${project.teaser}</p>
       `;
 
-      siteRecordList.append(card);
-    });
-  } catch (error) {
-    console.error("Failed to load site records", error);
-    siteRecordList.innerHTML =
-      '<p class="records__empty">Unable to load stored records at this time.</p>';
-  }
-}
+      card.addEventListener('click', () => showProject(project));
+      card.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          showProject(project);
+        }
+      });
 
-if (siteRecordForm) {
-  siteRecordForm.addEventListener("submit", submitSiteRecord);
-  loadSiteRecords();
-}
+      cardRefs.set(project.id, card);
+      projectGrid.appendChild(card);
+    });
+  }
+
+  function renderTimeline(list) {
+    timelineList.innerHTML = '';
+    timelineRefs.clear();
+
+    const sorted = [...list].sort((a, b) => a.startYear - b.startYear);
+
+    sorted.forEach((project) => {
+      const item = document.createElement('li');
+      item.className = 'timeline__item';
+      item.dataset.year = project.years;
+      item.tabIndex = 0;
+      item.dataset.projectId = project.id;
+      item.innerHTML = `
+        <h3>${project.title}</h3>
+        <p>${project.timelineNote || project.teaser}</p>
+      `;
+
+      item.addEventListener('click', () => showProject(project));
+      item.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          showProject(project);
+        }
+      });
+
+      timelineRefs.set(project.id, item);
+      timelineList.appendChild(item);
+    });
+  }
+
+  function drawMarkers(list) {
+    markerLayer.clearLayers();
+    markersById.clear();
+
+    list.forEach((project) => {
+      const icon = markerIcons[project.type] || markerIcons.excavation;
+      const marker = L.marker(project.coordinates, {
+        icon,
+        title: project.title
+      });
+      marker.on('click', () => showProject(project));
+      marker.on('add', () => {
+        if (project.id === activeProjectId) {
+          marker.getElement()?.classList.add('marker--active');
+        }
+      });
+      marker.addTo(markerLayer);
+      markersById.set(project.id, marker);
+    });
+  }
+
+  function setActiveProject(project) {
+    activeProjectId = project ? project.id : null;
+
+    cardRefs.forEach((card, id) => {
+      card.classList.toggle('project-card--active', id === activeProjectId);
+    });
+
+    timelineRefs.forEach((item, id) => {
+      item.classList.toggle('timeline__item--active', id === activeProjectId);
+    });
+
+    markersById.forEach((marker, id) => {
+      const element = marker.getElement();
+      if (element) {
+        element.classList.toggle('marker--active', id === activeProjectId);
+      }
+    });
+  }
+
+  function renderArtifacts(artifacts) {
+    if (!artifacts || !artifacts.length) {
+      detailArtifacts.innerHTML = '';
+      return;
+    }
+
+    const fragment = document.createDocumentFragment();
+    const heading = document.createElement('h3');
+    heading.textContent = 'Artifact inventory';
+    fragment.appendChild(heading);
+
+    artifacts.forEach((group) => {
+      const groupHeading = document.createElement('h4');
+      groupHeading.textContent = group.category;
+      const list = document.createElement('ul');
+      group.items.forEach((item) => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        list.appendChild(li);
+      });
+      fragment.appendChild(groupHeading);
+      fragment.appendChild(list);
+    });
+
+    detailArtifacts.innerHTML = '';
+    detailArtifacts.appendChild(fragment);
+  }
+
+  function renderDiscoveries(discoveries) {
+    if (!discoveries || !discoveries.length) {
+      detailDiscoveries.innerHTML = '';
+      return;
+    }
+
+    const heading = document.createElement('h3');
+    heading.textContent = 'Excavation highlights';
+    const list = document.createElement('ul');
+    discoveries.forEach((item) => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      list.appendChild(li);
+    });
+
+    detailDiscoveries.innerHTML = '';
+    detailDiscoveries.append(heading, list);
+  }
+
+  function showProject(project, { flyTo = true } = {}) {
+    if (!project) {
+      clearDetailPanel();
+      return;
+    }
+
+    detailTitle.textContent = project.title;
+    detailIntro.textContent = project.teaser;
+    detailMeta.innerHTML = '';
+    renderMetaRow('Type', typeLabels[project.type] || project.type);
+    renderMetaRow('Years', project.years);
+    renderMetaRow('Era', project.era);
+    renderMetaRow('Research focus', project.focus);
+    renderMetaRow('Location', project.location);
+
+    detailSummary.innerHTML = '';
+    const summaryParagraph = document.createElement('p');
+    summaryParagraph.textContent = project.summary;
+    detailSummary.appendChild(summaryParagraph);
+
+    renderDiscoveries(project.discoveries);
+    renderArtifacts(project.artifacts);
+
+    setActiveProject(project);
+
+    if (flyTo && map) {
+      map.setView(project.coordinates, 17, {
+        animate: true,
+        duration: 0.6
+      });
+    }
+
+    requestAnimationFrame(() => {
+      detailPanel.focus({ preventScroll: false });
+    });
+  }
+
+  function applyFilters({ preserveSelection = false } = {}) {
+    const era = eraSelect.value;
+    const focus = focusSelect.value;
+
+    filteredProjects = allProjects.filter((project) => {
+      const matchesEra = era === 'all' || project.era === era;
+      const matchesFocus = focus === 'all' || project.focus === focus;
+      return matchesEra && matchesFocus;
+    });
+
+    renderProjects(filteredProjects);
+    renderTimeline(filteredProjects);
+    drawMarkers(filteredProjects);
+    updateResultSummary(filteredProjects);
+
+    const activeStillVisible = filteredProjects.some(
+      (project) => project.id === activeProjectId
+    );
+
+    if (!filteredProjects.length) {
+      clearDetailPanel();
+      return;
+    }
+
+    if (preserveSelection && activeStillVisible) {
+      setActiveProject(
+        filteredProjects.find((project) => project.id === activeProjectId)
+      );
+      return;
+    }
+
+    showProject(filteredProjects[0]);
+  }
+
+  function resetFilters() {
+    eraSelect.value = 'all';
+    focusSelect.value = 'all';
+    applyFilters();
+  }
+
+  async function init() {
+    try {
+      const data = await loadProjects();
+      allProjects = Array.isArray(data.projects) ? data.projects : data;
+      filteredProjects = [...allProjects];
+
+      populateFilters(allProjects);
+      initMap();
+      applyFilters();
+    } catch (error) {
+      console.error(error);
+      resultCount.textContent = 'There was a problem loading excavation data.';
+    }
+  }
+
+  eraSelect.addEventListener('change', () => applyFilters({ preserveSelection: true }));
+  focusSelect.addEventListener('change', () => applyFilters({ preserveSelection: true }));
+  resetButton.addEventListener('click', resetFilters);
+
+  init();
+})();
